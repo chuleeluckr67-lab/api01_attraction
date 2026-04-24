@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.use('/attractions', attractionsRoutes);
+app.use('/api/attractions', attractionsRoutes);
 
 // health check
 // index.js
