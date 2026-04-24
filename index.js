@@ -14,8 +14,9 @@ app.use(express.json());
 app.use('/attractions', attractionsRoutes);
 
 // health check
+// index.js
 app.get('/', (req, res) => {
-  res.json({ message: 'API is running' });
+    res.redirect('/api/attractions');
 });
 
 // error handler
