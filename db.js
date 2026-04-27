@@ -1,20 +1,18 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// TiDB Cloud บังคับใช้ SSL ถ้าใน .env ตั้ง DB_SSL=true ให้ใช้ค่านี้
-const sslOption = process.env.DB_SSL === 'true'
-  ? { minVersion: 'TLSv1.2', rejectUnauthorized: true } 
-  : false;
-
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USERNAME,   // แก้จาก DB_USER เป็น DB_USERNAME
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE, // แก้จาก DB_NAME เป็น DB_DATABASE
-  ssl: sslOption,
-  waitForConnections: true,
-  connectionLimit: 10
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS, // ✅ แก้จาก DB_PASSWORD เป็น DB_PASS ให้ตรงกับ .env
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 4000,
+    ssl: process.env.DB_SSL === 'true' ? {
+        rejectUnauthorized: true
+    } : null,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
 module.exports = pool;

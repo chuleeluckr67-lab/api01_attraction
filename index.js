@@ -2,36 +2,29 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const attractionsRoutes = require('./routes/attractions');
+const attractionRoutes = require('./routes/attractions');
 
 const app = express();
 
-// middleware
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// routes
-app.use('/api/attractions', attractionsRoutes);
+// Routes
+app.use('/api/attractions', attractionRoutes);
 
-// health check
-// index.js
+// Root path for testing
 app.get('/', (req, res) => {
-    res.redirect('/api/attractions');
+    res.json({ message: 'Welcome to Thai Cafe Attraction API' });
 });
 
-// error handler
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).json({ error: 'Internal Server Error' });
-});
-
-// start server only in dev
+// Start Server Only if not on Vercel (Production)
 if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3333;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+    const PORT = process.env.PORT || 3333;
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
 }
 
-// export for Vercel
+// Export app for Vercel
 module.exports = app;

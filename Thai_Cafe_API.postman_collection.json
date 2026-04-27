@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
+		"name": "Thai Cafe Attraction API",
+		"description": "API สำหรับจัดการข้อมูลคาเฟ่ในไทย (Express.js + TiDB)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Attractions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/api/attractions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"attractions"
+					]
+				},
+				"description": "ดึงข้อมูลคาเฟ่ทั้งหมด 10 ร้าน"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Attraction by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/api/attractions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"attractions",
+						"1"
+					]
+				},
+				"description": "ดึงข้อมูลคาเฟ่รายร้านตาม ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Attraction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"After You Dessert Cafe\",\n    \"detail\": \"ร้านขนมหวานชื่อดังต้นตำรับ Shibuya Honey Toast\",\n    \"coverimage\": \"https://images.unsplash.com/photo-1551024601-bec78aea704b\",\n    \"latitude\": 13.7348,\n    \"longitude\": 100.5828\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3333/api/attractions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"attractions"
+					]
+				},
+				"description": "สร้างข้อมูลคาเฟ่ใหม่ลงฐานข้อมูล"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Attraction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/api/attractions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"attractions",
+						"1"
+					]
+				},
+				"description": "ลบข้อมูลคาเฟ่ตาม ID"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3333",
+			"type": "string"
+		}
+	]
+}
